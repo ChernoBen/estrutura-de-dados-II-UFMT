@@ -4,18 +4,18 @@
 
 int main(){
     //chamadas comuns
-    printf("inserção noramal inicio\n");
+    printf("inserção normal inicio\n");
     Lista *l1 = criaLista();
     l1 = insere_inicio(l1,4);
     l1 = insere_inicio(l1,5);
     l1 = insere_inicio(l1,6);
     imprime(l1);
-    printf("inserção noramal fim\n");
+    printf("inserção normal fim\n");
     l1 = insere_fim(l1,7);
     l1 = insere_fim(l1,8);
     l1 = insere_fim(l1,9);
     imprime(l1);
-    printf("inserção noramal ordenada\n");
+    printf("inserção normal ordenada\n");
     l1 = insere_ordenado(l1,1);
     l1 = insere_ordenado(l1,2);
     l1 = insere_ordenado(l1,3);
