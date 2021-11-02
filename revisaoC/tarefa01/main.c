@@ -3,27 +3,49 @@
 #include "utils.c"
 
 int main(){
-    Lista  *ls = criaLista();
+    //chamadas comuns
+    printf("inserção noramal inicio\n");
+    Lista *l1 = criaLista();
+    l1 = insere_inicio(l1,7);
+    l1 = insere_inicio(l1,5);
+    l1 = insere_inicio(l1,1);
+    imprime(l1);
+    printf("inserção noramal fim\n");
+    l1 = insere_fim(l1,3);
+    l1 = insere_fim(l1,8);
+    l1 = insere_fim(l1,4);
+    imprime(l1);
+    printf("inserção noramal ordenada\n");
+    l1 = insere_ordenado(l1,9);
+    l1 = insere_ordenado(l1,2);
+    l1 = insere_ordenado(l1,6);
+    imprime(l1);
+    
+    //chamadas recursivas
+    Lista  *l2 = criaLista();
     //Questão número 1:
-
-    ls = insereFim(ls,10);
-    ls = insereFim(ls,9);
-    ls = insereFim(ls,8);
-    ls = insereFim(ls,7);
-    imprimeLista(ls);
+    printf("inserção recursiva fim\n");
+    l2 = insere_fim_recursivo(l2,10);
+    l2 = insere_fim_recursivo(l2,9);
+    l2 = insere_fim_recursivo(l2,8);
+    l2 = insere_fim_recursivo(l2,7);
+    imprimeLista(l2);
     
     // número 2:
-    ls = insere_ordenado_recursivo(ls,ls,19);
-    ls = insere_ordenado_recursivo(ls,ls,18);
-    ls = insere_ordenado_recursivo(ls,ls,11);
-    ls = insere_ordenado_recursivo(ls,ls,4);
-    imprimeLista(ls);
+    printf("inserção recursiva ordenada\n");
+    l2 = insere_ordenado_recursivo(l2,l2,19);
+    l2 = insere_ordenado_recursivo(l2,l2,18);
+    l2 = insere_ordenado_recursivo(l2,l2,11);
+    l2 = insere_ordenado_recursivo(l2,l2,4);
+    imprimeLista(l2);
 
     // número 3:
-    ls = exclui(ls,19);
-    imprimeLista(ls);
+    printf("exclusao\n");
+    l2 = exclui(l2,19);
+    imprimeLista(l2);
 
     // número 4:
-    ls = altera(ls,11,10);
-    imprimeLista(ls);  
+    printf("alteracao\n");
+    l2 = altera(l2,11,10);
+    imprimeLista(l2);  
 }

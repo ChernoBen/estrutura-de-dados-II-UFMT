@@ -11,17 +11,45 @@ typedef struct lista{
 
 //-------assinaturas
 Lista *criaLista();
-Lista *insereFim(Lista *lista,int vl);
+Lista *insere_fim_recursivo(Lista *lista,int vl);
 void imprimeLista(Lista *lista);
 Lista *insere_ordenado_recursivo(Lista *lista,Lista *ant,int vl);
 Lista *exclui(Lista *lista, int valor);
 Lista *altera(Lista *lista, int valor,int novo_valor);
+Lista *insere_inicio(Lista *lista,int valor);
+Lista *insere_fim(Lista *lista,int valor);
+Lista *insere_ordenado(Lista *lista,int valor);
+void imprime(Lista *lista);
+
+
 //-------implementações
 
 //metodo para criar lista
 Lista *criaLista(){
     return NULL;
 }
+
+//metodo que insere valores de forma ordenada
+Lista *insere_ordenado(Lista *lista,int valor){
+    Lista *novo_no;
+    Lista *ant = NULL;
+    Lista *prox = lista;
+    while(prox!=NULL){
+        ant = prox;
+        prox = prox->prox;
+    }
+    novo_no = (Lista*)malloc(sizeof(Lista));
+    novo_no->valor = valor;
+    if(ant == NULL){
+        novo_no->prox = lista;
+        lista = novo_no;
+    }else{
+        novo_no->prox = ant->prox;
+        ant->prox = novo_no;
+    }
+    return lista;
+}
+
 //metodo que insere de forma ordenada recursivamente
 Lista *insere_ordenado_recursivo(Lista *lista,Lista *ant,int vl){
     //lp lista -> proxima posicao
@@ -45,8 +73,37 @@ Lista *insere_ordenado_recursivo(Lista *lista,Lista *ant,int vl){
     }
     return lp;
 }
+
+//metodo que insere valor no inicio da lista
+Lista *insere_inicio(Lista *lista,int valor){
+    Lista *novo_no = (Lista*)malloc(sizeof(Lista));
+    novo_no->valor = valor;
+    novo_no->prox = lista;
+    return novo_no;
+}
+
+//metodo que insere valor no fim da lista
+Lista *insere_fim(Lista *lista,int valor){
+    Lista *novo_no = (Lista*)malloc(sizeof(Lista));
+    novo_no->valor = valor;
+    novo_no->prox = NULL;
+    Lista *prox,*ant;
+    prox = lista;
+    ant = lista;
+    while(prox !=NULL){
+        ant = prox;
+        prox = prox->prox;
+    }
+    if(ant !=NULL){
+        ant->prox = novo_no;
+    }else{
+        lista = novo_no;
+    }
+    return lista;
+}
+
 //metodo que insere recursivamente um valo no final da lista
-Lista *insereFim(Lista *lista,int vl){
+Lista *insere_fim_recursivo(Lista *lista,int vl){
     Lista *ls = lista;
     if(ls == NULL){
         Lista *novo_no = (Lista*)malloc(sizeof(Lista));
@@ -54,7 +111,7 @@ Lista *insereFim(Lista *lista,int vl){
         novo_no->prox = NULL;
         return novo_no;
     }else{
-        ls->prox = insereFim(ls->prox,vl);
+        ls->prox = insere_fim_recursivo(ls->prox,vl);
     }
     return ls;
 }
@@ -106,5 +163,14 @@ Lista *altera(Lista *lista, int valor,int novo_valor){
         ls = ls->prox;
     }
     printf("Valor não encontrado\n"); 
+}
+
+//metodo que imprime valores da lista
+void imprime(Lista *lista){
+    Lista *prox;
+    for (prox = lista;prox!=NULL;prox = prox->prox){
+        printf("%d ",prox->valor);
+    }
+    printf("\n");
 }
 #endif
