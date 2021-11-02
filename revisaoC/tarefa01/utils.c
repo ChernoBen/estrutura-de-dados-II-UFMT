@@ -21,7 +21,6 @@ Lista *insere_fim(Lista *lista,int valor);
 Lista *insere_ordenado(Lista *lista,int valor);
 void imprime(Lista *lista);
 
-
 //-------implementações
 
 //metodo para criar lista
@@ -34,7 +33,7 @@ Lista *insere_ordenado(Lista *lista,int valor){
     Lista *novo_no;
     Lista *ant = NULL;
     Lista *prox = lista;
-    while(prox!=NULL){
+    while(prox!=NULL && prox->valor < valor){
         ant = prox;
         prox = prox->prox;
     }
