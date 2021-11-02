@@ -4,50 +4,49 @@
 #include <stdio.h>
 #include <unistd.h>
 
-struct estru_no{
+typedef struct lista{
     int valor;
-    struct estru_no *prox;
-};
-typedef struct estru_no tipo_no;
+    struct lista *prox;
+}Lista;
 
-//----------assinaturas
-tipo_no *alocaNovoNo(int vl);
-void insereFim(tipo_no **ls,int vl);
-void imprimeLista(tipo_no *ls);
+//-------assinaturas
+Lista *criaLista();
+Lista *insereFim(Lista *lista,int vl);
+void imprimeLista(Lista *lista);
+//-------implementações
 
-
-//----------implementação
-//funcao que aloca endereco de memoria
-tipo_no *alocaNovoNo(int vl){
-    tipo_no *novo_no;
-    novo_no = (tipo_no*)malloc(sizeof(tipo_no));
-    novo_no->valor = vl;
-    novo_no->prox = NULL;
-    return novo_no;
+//metodo para criar lista
+Lista *criaLista(){
+    return NULL;
 }
-//funcao que insere recursivamente valor no final da lista
-void insereFim(tipo_no **ls,int vl){
-    if((*ls)==NULL){
-        tipo_no *novo_no;
-        novo_no = alocaNovoNo(vl);
-        (*ls) = novo_no;
+
+//metodo que insere recursivamente um valo no final da lista
+Lista *insereFim(Lista *lista,int vl){
+    Lista *ls = lista;
+    if(ls == NULL){
+        Lista *novo_no = (Lista*)malloc(sizeof(Lista));
+        novo_no->valor = vl;
+        novo_no->prox = NULL;
+        return novo_no;
     }else{
-        insereFim(&(*ls)->prox,vl);
+        ls->prox = insereFim(ls->prox,vl);
     }
+    return ls;
 }
 
-//funcao que imprime valores da lista
-void imprimeLista(tipo_no *ls){
-    if(ls==NULL){
-        printf("Lista vazia\n");
+//metodo que imprime elementos da lista
+void imprimeLista(Lista *lista){
+    if(lista==NULL){
+        printf("Lista vazia");
     }else{
-        printf("Inicio->[");
-        while(ls!=NULL){
-            printf("%d ",ls->valor);
-            ls = ls->prox;
+        printf("inicio->[");
+        while(lista!=NULL){
+            printf("%d ",lista->valor);
+            lista = lista->prox;
         }
         printf("]<-fim\n");
     }
 }
+
 
 #endif

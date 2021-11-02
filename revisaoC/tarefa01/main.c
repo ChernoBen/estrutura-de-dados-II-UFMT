@@ -3,12 +3,13 @@
 #include "utils.c"
 
 int main(){
-    tipo_no *lista;
-    lista = NULL;
+    Lista  *ls = criaLista();
     //Questão número-1
-    insereFim(&lista,6);
-    insereFim(&lista,5);
-    insereFim(&lista,4);
-    insereFim(&lista,3);
-    imprimeLista(lista);
+    ls = insereFim(ls,10);
+    ls = insereFim(ls,9);
+    ls = insereFim(ls,8);
+    ls = insereFim(ls,7);
+    imprimeLista(ls);
+    
+    
 }
